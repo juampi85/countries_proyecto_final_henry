@@ -1,0 +1,6 @@
+.container {
+  border: 2px grey solid;
+  border-radius: .5rem;
+  margin: .5rem;
+  width: 15rem;
+}
