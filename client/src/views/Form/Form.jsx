@@ -133,7 +133,7 @@ const Form = () => {
         />
         {errors.season && <span>{errors.season}</span>}
       </div>
-      <div>
+      {/* <div>
         <label htmlFor="season">Temporada:</label>
         <select onChange={changeHandler}>
         <option value="">Selecciona una opción</option>
@@ -143,7 +143,7 @@ const Form = () => {
         <option value="autumn">Otoño</option>
         </select>
         {errors.season && <span>{errors.season}</span>}
-      </div>
+      </div> */}
 
       <div>
         <label htmlFor="countries">País/es:</label>
