@@ -1,12 +1,10 @@
 const { Activity, Country } = require('../db');
-const {
-  getAllActivities,
-  createActivity,
-} = require('../controllers/activitiesControllers');
+const { getAllActivities } = require('../controllers/activitiesControllers');
+const {Op} = require('sequelize');
 
 const getActivitiesHandler = async (req, res) => {
   try {
-    const allActivities = await getAllActivities();
+    const allActivities = await getAllActivities(req, res);
     res.status(200).json(allActivities);
   } catch (error) {
     console.error(error);
@@ -14,23 +12,39 @@ const getActivitiesHandler = async (req, res) => {
   }
 };
 
-
 const createActivityHandler = async (req, res) => {
-  // const activityData = req.body;
-  const { name, difficulty, duration, season, countryIds } = req.body;
+  try {
+    const { name, difficulty, duration, season, countries } = req.body;
+    const countryArray = countries.split(',').map((country) => country.trim());
 
-  const result = await createActivity(
-    name,
-    difficulty,
-    duration,
-    season,
-    countryIds
-  );
+    const countryRecords = await Country.findAll({
+      where: {
+        name: {
+          [Op.or]: countryArray.map((country) => ({
+            [Op.iLike]: `%${country}%`, // Búsqueda insensible a mayúsculas y minúsculas
+          })),
+        },
+      },
+    });
 
-  if (result.success) {
-    res.status(201).json({ message: result.message });
-  } else {
-    res.status(400).json({ error: result.error });
+    if (countryRecords.length === 0) {
+      res
+        .status(400)
+        .json({ message: 'No se encontraron registros de esos paises' });
+    }
+
+    const newActivity = await Activity.create({
+      name,
+      difficulty,
+      duration,
+      season,
+    });
+
+    await newActivity.addCountries(countryRecords);
+    return res.status(201).json({ message: 'Actividad creada con exito' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'macana (Error interno del servidor)' });
   }
 };
 
