@@ -12,6 +12,7 @@ const CardsContainer = ({ filteredCountries }) => {
         return (
           <Card
             key={country.id}
+            id={country.id}
             name={country.name}
             flag_img={country.flag_img}
             continent={country.continent}

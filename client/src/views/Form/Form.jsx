@@ -50,7 +50,6 @@ const Form = () => {
     return allFieldsFilled && noUnresolvedErrors;
   };
 
-
   const submitHandler = (event) => {
     event.preventDefault();
     axios
@@ -73,14 +72,14 @@ const Form = () => {
       duration: '',
       season: '',
       countries: [],
-    })
+    });
     nameInputRef.current.focus();
   };
 
   return (
     <form onSubmit={submitHandler} className={style.container}>
-      <div>
-        <label htmlFor="name">Nombre:</label>
+      {/* <div>
+        <label htmlFor="name">Actividad:</label>
         <input
           type="text"
           value={form.name}
@@ -89,8 +88,31 @@ const Form = () => {
           ref={nameInputRef}
         />
         {errors.name && <span>{errors.name}</span>}
+      </div> */}
+      <div>
+        <label htmlFor="name">Actividad:</label>
+        <select value={form.name} onChange={changeHandler} name="name">
+          <option value="">Elija la actividad turística</option>
+          <option value="correr sobre cerros empinados">
+            Correr sobre unos cerros empinados
+          </option>
+          <option value="andar en kayak">Pistear en kayak como un campeón</option>
+          <option value="karting">
+            Soñar con ser Lewis Hamilton en plena Monza
+          </option>
+          <option value="jugar al padel">
+            Jugar al deporte de los rebotes infinitos
+          </option>
+          <option value="caminar por sendero">
+            Caminar de noche por senderos cuasi salvajes
+          </option>
+          <option value="nadar con reptiles">
+            Aprovechar para nadar en una laguna con algún que otro reptil cerca
+            juguetón
+          </option>
+          <option value="descenso en rapel">Meter una bajada montañosa a puro rapel</option>
+        </select>
       </div>
-
       <div>
         <label htmlFor="difficulty">Dificultad:</label>
         <input

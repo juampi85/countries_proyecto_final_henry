@@ -18,6 +18,10 @@ const Home = () => {
     dispatch(getCountries());
   }, [dispatch]);
 
+   useEffect(() => {
+     setCurrentPage(1); // Setea la página a 1 cada vez que searchTerm cambia
+   }, [searchTerm]);
+
    const filteredCountries = countries.filter(
      (country) =>
        country.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -53,6 +57,15 @@ const Home = () => {
     setCurrentPage(newPage);
   };
 
+  const handleSearch = (event) => {
+    const newSearchTerm = event.target.value;
+    setSearchTerm(newSearchTerm);
+
+    if (selectedContinent !== '') {
+      setCurrentPage(1);
+    }
+  };
+
   const visibleCountries = sortedCountries.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
@@ -62,15 +75,16 @@ const Home = () => {
   return (
     <div>
       <h1>Esta es la vista de la HOME</h1>
-      <SearchBar onSearch={setSearchTerm} />
+      {/* <SearchBar onSearch={setSearchTerm} /> */}
+      <SearchBar onSearch={handleSearch} />
       <div>
         <label htmlFor="search">Buscar País</label>
         <input
           type="text"
           name="search"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          // onChange={handleSearch}
+          // onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleSearch}
           placeholder="Buscar país"
         />
       </div>
