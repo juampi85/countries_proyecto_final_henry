@@ -3,4 +3,17 @@
   border-radius: .5rem;
   margin: .5rem;
   width: 15rem;
+  background-color: rgb(223, 201, 245);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.flags {
+  height: 10rem;
+  width: 100%;
+}
+
+.continent {
+  font-style: italic;
 }
