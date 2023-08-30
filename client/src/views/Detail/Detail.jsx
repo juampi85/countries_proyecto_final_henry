@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import style from './Detail.module.css';
 
 function Detail() {
   const { id } = useParams();
@@ -18,16 +19,19 @@ function Detail() {
     return setCountryDetail({});
   }, [id]);
 
-  const { flag_img, name, continent, capital, population } = countryDetail;
+  const { name, flag_img, continent, capital, subregion, area, population } = countryDetail;
   return (
-    <div>
+    <div className={style.detailContainer}>
       <span>
-        <img src={flag_img} alt={`flag of ${name}`} />
+        <img src={flag_img} alt={`flag of ${name}`} className={style.flag} />
       </span>
       <span>
         <p>
-          {name} es un país que queda en el continente de {continent}. Su
-          capital es {capital}. Tiene una población de {population} habitantes.
+          <b>{name}</b> es un país que queda en el continente de{' '}
+          <b>{continent}</b>. Su capital es <b>{capital}</b>. Su subregión es{' '}
+          <b>{subregion}</b>. Tiene una área de <b>{area}</b> metros cuadrados y
+          una población de <b>{population}</b> habitantes. Y su ID es: <b>{id}</b>
+          .
         </p>
       </span>
     </div>

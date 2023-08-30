@@ -1,0 +1,27 @@
+.detailContainer {
+  background-color: #ee3b0e;
+  display: flex;
+  /* align-items: center; */
+  width: 60%;
+  margin: 1.25rem auto;
+  border-radius: .5rem;
+  height: 12rem;
+  /* border: solid 4px black; */
+}
+
+.flag {
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
+  height: 100%;
+  margin-right: .5rem;
+}
+
+p{
+  text-align: justify;
+  margin-right: .5rem;
+  line-height: 2.5;
+  /* padding-top: .8rem; */
+  /* margin-top: 2.5rem; */
+}
+
+

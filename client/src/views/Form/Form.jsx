@@ -22,9 +22,6 @@ const Form = () => {
 
   const nameInputRef = useRef(null);
 
-  // const [searchTerm, setSearchTerm] = useState('');
-  // const [selectedCountries, setSelectedCountries] = useState([]);
-
   const changeHandler = (event) => {
     const newForm = {
       ...form,
@@ -36,10 +33,6 @@ const Form = () => {
     setErrors(newErrors);
   };
 
-  // const hasErrors = () => {
-  //   //Esta función recorre los valores del objeto errors y devuelve true si encuentra al menos un error no vacío.
-  //   return Object.values(errors).some((error) => error !== '');
-  // };
 
   const areAllErrorsResolved = () => {
     const allFieldsFilled = Object.values(form).every((value) => value !== '');
@@ -78,17 +71,6 @@ const Form = () => {
 
   return (
     <form onSubmit={submitHandler} className={style.container}>
-      {/* <div>
-        <label htmlFor="name">Actividad:</label>
-        <input
-          type="text"
-          value={form.name}
-          onChange={changeHandler}
-          name="name"
-          ref={nameInputRef}
-        />
-        {errors.name && <span>{errors.name}</span>}
-      </div> */}
       <div>
         <label htmlFor="name">Actividad:</label>
         <select value={form.name} onChange={changeHandler} name="name">
