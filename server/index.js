@@ -7,14 +7,7 @@ const { conn } = require('./src/db.js');
 const PORT = 3001;
 const { Country } = require('./src/db');
 
-// conn
-//   .sync({ force: true })
-//   .then(() => {
-//     server.listen(PORT, () => {
-//       console.log(`Server listening on port ${PORT}`);
-//     });
-//   })
-//   .catch((error) => console.error(error));
+
 const startingServer = async () => {
   console.log('first')
   try {
@@ -23,7 +16,6 @@ const startingServer = async () => {
       console.log(`Server listening on port ${PORT}`);
     });
 
-    // const { data } = await axios.get('http://localhost:5000/countries');
     const getAllCountries = (await axios.get('http://localhost:5000/countries')).data;
     
     const countriesAtDatabase = await getAllCountries.map(e => { 
