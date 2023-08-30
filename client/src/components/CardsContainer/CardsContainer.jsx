@@ -17,6 +17,7 @@ const CardsContainer = ({ filteredCountries }) => {
             flag_img={country.flag_img}
             continent={country.continent}
             population={country.population}
+            Activities={country.Activities} // Cambia esto según cómo se llame la relación en tu modelo
           />
         );
       })}
