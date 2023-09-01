@@ -1,21 +1,25 @@
 import CardsContainer from '../../components/CardsContainer/CardsContainer';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountries } from '../../redux/actions/actions';
+import { getActivities, getCountries } from '../../redux/actions/actions';
 import SearchBar from '../../components/Searchbar/Searchbar';
 
 const Home = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
+  const activities = useSelector((state) => state.activities);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('asc'); // Nuevo estado para el orden
   const [sortType, setSortType] = useState('name'); // Nuevo estado para el tipo de orden
   const [selectedContinent, setSelectedContinent] = useState(''); // Nuevo estado para el filtro de continentes
   const [currentPage, setCurrentPage] = useState(1); // Nuevo estado para la página actual
+
   const itemsPerPage = 10;
 
   useEffect(() => {
     dispatch(getCountries());
+    dispatch(getActivities());
   }, [dispatch]);
 
    useEffect(() => {
@@ -75,15 +79,14 @@ const Home = () => {
   return (
     <div>
       <h1>Esta es la vista de la HOME</h1>
-      {/* <SearchBar onSearch={setSearchTerm} /> */}
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={setSearchTerm} />
+      {/* <SearchBar onSearch={handleSearch} /> */}
       <div>
         <label htmlFor="search">Buscar País</label>
         <input
           type="text"
           name="search"
           value={searchTerm}
-          // onChange={(e) => setSearchTerm(e.target.value)}
           onChange={handleSearch}
           placeholder="Buscar país"
         />

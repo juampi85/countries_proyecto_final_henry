@@ -30,7 +30,7 @@ function Detail() {
           <b>{name}</b> es un país que queda en el continente de{' '}
           <b>{continent}</b>. Su capital es <b>{capital}</b>. Su subregión es{' '}
           <b>{subregion}</b>. Tiene una área de <b>{area}</b> metros cuadrados y
-          una población de <b>{population}</b> habitantes. Y su ID es: <b>{id}</b>
+          una población de <b>{population}</b> habitantes. Su ID es: <b>{id}</b>
           .
         </p>
       </span>

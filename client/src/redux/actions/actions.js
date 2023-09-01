@@ -1,8 +1,5 @@
 import axios from 'axios';
-import {
-  GET_COUNTRIES,
-  GET_COUNTRY,
-} from './actionTypes';
+import { GET_COUNTRIES, GET_COUNTRY, GET_ACTIVITIES } from './actionTypes';
 
 export const getCountries = () => {
   return async (dispatch) => {
@@ -26,27 +23,38 @@ export const getCountry = (id) => {
   };
 };
 
-export const filterCountryByName = (name) => ({
-  type: FILTER_COUNTRY_BY_NAME,
-  payload: name,
-});
+export const getActivities = () => {
+  return async (dispatch) => {
+    const response = await axios.get('http://localhost:3001/activities');
+    const activities = response.data;
+    dispatch({
+      type: GET_ACTIVITIES,
+      payload: activities,
+    });
+  };
+};
 
-export const filterCountryByContinent = (continent) => ({
-  type: FILTER_COUNTRY_BY_CONTINENT,
-  payload: continent,
-});
+// export const filterCountryByName = (name) => ({
+//   type: FILTER_COUNTRY_BY_NAME,
+//   payload: name,
+// });
 
-export const filterCountryByActivity = (activity) => ({
-  type: FILTER_COUNTRY_BY_ACTIVITY,
-  payload: activity,
-});
+// export const filterCountryByContinent = (continent) => ({
+//   type: FILTER_COUNTRY_BY_CONTINENT,
+//   payload: continent,
+// });
 
-export const orderCountryByName = (name) => ({
-  type: ORDER_COUNTRY_BY_NAME,
-  payload: name,
-});
+// export const filterCountryByActivity = (activity) => ({
+//   type: FILTER_COUNTRY_BY_ACTIVITY,
+//   payload: activity,
+// });
 
-export const orderCountryByPopulation = (population) => ({
-  type: ORDER_COUNTRY_BY_POPULATION,
-  payload: population,
-});
+// export const orderCountryByName = (name) => ({
+//   type: ORDER_COUNTRY_BY_NAME,
+//   payload: name,
+// });
+
+// export const orderCountryByPopulation = (population) => ({
+//   type: ORDER_COUNTRY_BY_POPULATION,
+//   payload: population,
+// });
