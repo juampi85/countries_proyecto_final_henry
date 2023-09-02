@@ -1,13 +1,12 @@
 import CardsContainer from '../../components/CardsContainer/CardsContainer';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getActivities, getCountries } from '../../redux/actions/actions';
+import { getCountries } from '../../redux/actions/actions';
 import SearchBar from '../../components/Searchbar/Searchbar';
 
 const Home = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
-  const activities = useSelector((state) => state.activities);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('asc'); // Nuevo estado para el orden
@@ -19,7 +18,6 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getCountries());
-    dispatch(getActivities());
   }, [dispatch]);
 
    useEffect(() => {
@@ -80,7 +78,6 @@ const Home = () => {
     <div>
       <h1>Esta es la vista de la HOME</h1>
       <SearchBar onSearch={setSearchTerm} />
-      {/* <SearchBar onSearch={handleSearch} /> */}
       <div>
         <label htmlFor="search">Buscar País</label>
         <input

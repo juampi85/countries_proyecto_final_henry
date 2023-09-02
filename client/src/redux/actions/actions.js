@@ -23,14 +23,26 @@ export const getCountry = (id) => {
   };
 };
 
-export const getActivities = () => {
+export const getActivities = (filterByName = '') => {
   return async (dispatch) => {
-    const response = await axios.get('http://localhost:3001/activities');
-    const activities = response.data;
-    dispatch({
-      type: GET_ACTIVITIES,
-      payload: activities,
-    });
+    try {
+      let url = 'http://localhost:3001/activities';
+
+      // Agregar el filtro si se proporciona un nombre
+      if (filterByName) {
+        url += `?name=${filterByName}`;
+      }
+
+      const response = await axios.get(url);
+      const activities = response.data;
+
+      dispatch({
+        type: GET_ACTIVITIES,
+        payload: activities,
+      });
+    } catch (error) {
+      alert({ error: error.message });
+    }
   };
 };
 

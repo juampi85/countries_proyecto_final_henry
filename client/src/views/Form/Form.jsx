@@ -1,9 +1,18 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import style from './Form.module.css';
 import axios from 'axios';
 import { validateForm } from './FormValidations';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCountries } from '../../redux/actions/actions';
 
 const Form = () => {
+  const dispatch = useDispatch();
+  const countries = useSelector((state) => state.countries);
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, [dispatch]);
+
   const [form, setForm] = useState({
     name: '',
     difficulty: '',
@@ -20,7 +29,6 @@ const Form = () => {
     countries: '',
   });
 
-  const nameInputRef = useRef(null);
 
   const changeHandler = (event) => {
     const newForm = {
@@ -44,6 +52,7 @@ const Form = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
     axios
       .post('http://localhost:3001/activities', form)
       .then((res) => {
@@ -65,7 +74,6 @@ const Form = () => {
       season: '',
       countries: [],
     });
-    nameInputRef.current.focus();
   };
 
   return (
@@ -150,12 +158,20 @@ const Form = () => {
 
         <div>
           <label htmlFor="countries">País/es:</label>
-          <input
-            type="text"
+          <select
             value={form.countries}
             onChange={changeHandler}
             name="countries"
-          />
+          >
+            <option value="">Selecciona un/os País/es</option>
+            {countries.map((country) => {
+              return (
+                <option key={country.id} value={country.name}>
+                  {country.name}
+                </option>
+              );
+            })}
+          </select>
           {errors.countries && <span>{errors.countries}</span>}
         </div>
         <button

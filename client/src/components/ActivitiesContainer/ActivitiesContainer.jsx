@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Activities from '../Activities/Activities';
 import { getActivities } from '../../redux/actions/actions';
@@ -8,22 +8,47 @@ const ActivitiesContainer = () => {
   const activities = useSelector((state) => state.activities);
   const dispatch = useDispatch();
 
+  const [selectedActivity, setSelectedActivity] = useState('');
+
   useEffect(() => {
-    dispatch(getActivities());
-  }, [dispatch]);
+    dispatch(getActivities(selectedActivity));
+  }, [dispatch, selectedActivity]);
+
+  const uniqueActivityNames = Array.from(
+    new Set(activities.map((activity) => activity.name))
+  );
 
   return (
-    <div className={style.container}>
-      {activities.map((activity) => {
-        return (
-          <Activities
-            key={activity.id}
-            name={activity.name}
-            Countries={activity.Countries}
-          />
-        );
-      })}
-    </div>
+    <>
+      <select
+        value={selectedActivity}
+        onChange={(e) => setSelectedActivity(e.target.value)}
+      >
+        <option value="">Todas las actividades</option>
+        {uniqueActivityNames.map((name) => (
+          <option key={name} value={name}>
+            {name}
+          </option>
+        ))}
+      </select>
+
+      <div className={style.container}>
+        {activities
+          .filter((activity) =>{
+            return selectedActivity ? activity.name === selectedActivity : true;
+          })
+          .map((activity) => (
+            <Activities
+              key={activity.id}
+              name={activity.name}
+              duration={activity.duration}
+              difficulty={activity.difficulty}
+              season={activity.season}
+              Countries={activity.Countries}
+            />
+          ))}
+      </div>
+    </>
   );
 };
 

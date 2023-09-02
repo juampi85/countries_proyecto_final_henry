@@ -1,11 +1,10 @@
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import {Home, Landing, Form, Detail} from './views';
 import Navbar from './components/Navbar/Navbar';
 import ActivitiesContainer from './components/ActivitiesContainer/ActivitiesContainer';
 
 function App() {
-  // const [count, setCount] = useState(0)
   const location = useLocation();
 
   return (
