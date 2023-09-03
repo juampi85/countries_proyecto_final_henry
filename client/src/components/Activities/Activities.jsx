@@ -13,16 +13,18 @@ const Activities = ({ name, duration, difficulty, season, Countries }) => {
   return (
     <>
       <div className={style.container}>
-        <h1>{name}</h1>
+        <h3>{name}</h3>
         <p>
-          <b>{duration}</b> hrs
+          Duración: <b>{duration}</b> hrs
         </p>
         <p>
           Nivel de dificultad: <b>{difficulty}</b>
         </p>
-        {seasonName && <p>{seasonName}</p>}
-        <div>
-          <h4>Países:</h4>
+        <p>
+          Temporada: <b>{seasonName}</b>
+        </p>
+        <div className={style.countries}>
+          <h4>Países asociados:</h4>
           <ul>
             {Countries.map((country) => (
               <li key={country.id}>{country.name}</li>

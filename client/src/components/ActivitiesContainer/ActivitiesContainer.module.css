@@ -1,5 +1,5 @@
 .container {
-  background-color: rgb(221, 250, 174);
+  /* background-color: rgb(221, 250, 174); */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

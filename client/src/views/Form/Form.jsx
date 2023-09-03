@@ -44,7 +44,7 @@ const Form = () => {
   const areAllErrorsResolved = () => {
     const allFieldsFilled = Object.values(form).every((value) => value !== '');
     const noUnresolvedErrors = Object.values(errors).every(
-      (error) => error === ''
+      (error) => error === '✓'
     );
 
     return allFieldsFilled && noUnresolvedErrors;
@@ -79,9 +79,23 @@ const Form = () => {
   return (
     <>
       <form onSubmit={submitHandler} className={style.container}>
-        <div>
-          <label htmlFor="name">Actividad:</label>
-          <select value={form.name} onChange={changeHandler} name="name">
+        <div className={style.input}>
+          <label htmlFor="name" className={style.label}>
+            Actividad:
+          </label>
+          <select
+            value={form.name}
+            onChange={changeHandler}
+            name="name"
+            // className={style.select}
+            className={
+              errors.name === '✓'
+                ? style.selectOk
+                : errors.difficulty !== ''
+                ? style.selectErr
+                : null
+            }
+          >
             <option value="">Elija la actividad turística</option>
             <option value="Correr sobre cerros empinados">
               Correr sobre unos cerros empinados
@@ -99,20 +113,34 @@ const Form = () => {
               Caminar de noche por senderos cuasi salvajes
             </option>
             <option value="Nadar con reptiles">
-              Aprovechar para nadar en una laguna con algún que otro reptil
-              cerca juguetón
+              Aprovechar para nadar en una laguna espesa
             </option>
             <option value="Descenso en rapel">
               Meter una bajada montañosa a puro rapel
             </option>
           </select>
+          {errors.name !== '✓' ? (
+            <span className={style.error}>{errors.name}</span>
+          ) : (
+            <span className={style.ok}>{errors.name}</span>
+          )}
         </div>
-        <div>
-          <label htmlFor="difficulty">Dificultad:</label>
+        <div className={style.input}>
+          <label htmlFor="difficulty" className={style.label}>
+            Dificultad:
+          </label>
           <select
             value={form.difficulty}
             onChange={changeHandler}
             name="difficulty"
+            // className={style.select}
+            className={
+              errors.difficulty === '✓'
+                ? style.selectOk
+                : errors.difficulty !== ''
+                ? style.selectErr
+                : null
+            }
           >
             <option value="">Elija el nivel de dificultad</option>
             <option value="1">1</option>
@@ -121,11 +149,19 @@ const Form = () => {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          {errors.difficulty && <span>{errors.difficulty}</span>}
+          {errors.difficulty !== '✓' ? (
+            <span className={style.error}>{errors.difficulty}</span>
+          ) : (
+            <span className={style.ok}>{errors.difficulty}</span>
+          )}
         </div>
 
-        <div>
-          <label value={form.duration} htmlFor="duration">
+        <div className={style.input}>
+          <label
+            value={form.duration}
+            htmlFor="duration"
+            className={style.label}
+          >
             Duración:
           </label>
           <select
@@ -133,6 +169,14 @@ const Form = () => {
             value={form.duration}
             onChange={changeHandler}
             name="duration"
+            // className={style.select}
+            className={
+              errors.duration === '✓'
+                ? style.selectOk
+                : errors.difficulty !== ''
+                ? style.selectErr
+                : null
+            }
           >
             <option value="">Elija las horas de duración</option>
             <option value="1">1</option>
@@ -141,27 +185,59 @@ const Form = () => {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          {errors.duration && <span>{errors.duration}</span>}
+          {errors.duration !== '✓' ? (
+            <span className={style.error}>{errors.duration}</span>
+          ) : (
+            <span className={style.ok}>{errors.duration}</span>
+          )}
         </div>
 
-        <div>
-          <label htmlFor="season">Temporada:</label>
-          <select value={form.season} onChange={changeHandler} name="season">
+        <div className={style.input}>
+          <label htmlFor="season" className={style.label}>
+            Temporada:
+          </label>
+          <select
+            value={form.season}
+            onChange={changeHandler}
+            name="season"
+            // className={style.select}
+            className={
+              errors.season === '✓'
+                ? style.selectOk
+                : errors.difficulty !== ''
+                ? style.selectErr
+                : null
+            }
+          >
             <option value="">Selecciona una opción</option>
             <option value="Winter">Invierno</option>
             <option value="Spring">Primavera</option>
             <option value="Summer">Verano</option>
             <option value="Autumn">Otoño</option>
           </select>
-          {errors.season && <span>{errors.season}</span>}
+          {errors.season !== '✓' ? (
+            <span className={style.error}>{errors.season}</span>
+          ) : (
+            <span className={style.ok}>{errors.season}</span>
+          )}
         </div>
 
-        <div>
-          <label htmlFor="countries">País/es:</label>
+        <div className={style.input}>
+          <label htmlFor="countries" className={style.label}>
+            País/es:
+          </label>
           <select
             value={form.countries}
             onChange={changeHandler}
             name="countries"
+            // className={style.select}
+            className={
+              errors.countries === '✓'
+                ? style.selectOk
+                : errors.difficulty !== ''
+                ? style.selectErr
+                : null
+            }
           >
             <option value="">Selecciona un/os País/es</option>
             {countries.map((country) => {
@@ -172,7 +248,11 @@ const Form = () => {
               );
             })}
           </select>
-          {errors.countries && <span>{errors.countries}</span>}
+          {errors.countries !== '✓' ? (
+            <span className={style.error}>{errors.countries}</span>
+          ) : (
+            <span className={style.ok}>{errors.countries}</span>
+          )}
         </div>
         <button
           type="submit"

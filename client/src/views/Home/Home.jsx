@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCountries } from '../../redux/actions/actions';
 import SearchBar from '../../components/Searchbar/Searchbar';
+import style from './Home.module.css';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -76,60 +77,70 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Esta es la vista de la HOME</h1>
-      <SearchBar onSearch={setSearchTerm} />
-      <div>
-        <label htmlFor="search">Buscar País</label>
-        <input
-          type="text"
-          name="search"
-          value={searchTerm}
-          onChange={handleSearch}
-          placeholder="Buscar país"
-        />
-      </div>
-      <div>
-        <label htmlFor="order">Ordenar por: </label>
-        <select value={sortType} onChange={handleSortChange} name="order">
-          <option value="name">Nombre</option>
-          <option value="population">Población</option>
-        </select>
-        <select
-          value={sortOrder}
-          onChange={(e) => setSortOrder(e.target.value)}
-          name="order"
-        >
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="continentFilter">Filtrar por continente: </label>
-        <select
-          value={selectedContinent}
-          onChange={handleContinentChange}
-          name="continentFilter"
-        >
-          <option value="">Todos los continentes</option>
-          <option value="Africa">África</option>
-          <option value="South America">Sudamérica</option>
-          <option value="North America">Norte América</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europa</option>
-          <option value="Oceania">Oceanía</option>
-        </select>
-      </div>
-      <div>
-        {currentPage > 1 && (
-          <button onClick={() => handlePageChange(currentPage - 1)}>
-            Anterior
-          </button>
-        )}
-        {currentPage < totalPages && (
-          <button onClick={() => handlePageChange(currentPage + 1)}>
-            Siguiente
-          </button>
-        )}
+      <div className={style.home_container}>
+        <span className={style.searchbar_container}>
+          <label htmlFor={<SearchBar />}> Buscar País</label>
+          <SearchBar onSearch={setSearchTerm} />
+        </span>
+        {/* <div className={style.search}>
+          <label htmlFor="search">Buscar País</label>
+          <input
+            type="text"
+            name="search"
+            value={searchTerm}
+            onChange={handleSearch}
+            placeholder="Buscar país"
+          />
+        </div> */}
+        <div className={style.search}>
+          <label htmlFor="order">Ordenar por: </label>
+          <select value={sortType} onChange={handleSortChange} name="order">
+            <option value="name">Nombre</option>
+            <option value="population">Población</option>
+          </select>
+          <select
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+            name="order"
+          >
+            <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+          </select>
+        </div>
+        <div className={style.search}>
+          <label htmlFor="continentFilter">Filtrar por continente: </label>
+          <select
+            value={selectedContinent}
+            onChange={handleContinentChange}
+            name="continentFilter"
+          >
+            <option value="">Todos los continentes</option>
+            <option value="Africa">África</option>
+            <option value="South America">Sudamérica</option>
+            <option value="North America">Norte América</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europa</option>
+            <option value="Oceania">Oceanía</option>
+          </select>
+        </div>
+        <div className={style.pages}>
+          {currentPage > 1 && (
+            <button
+              className={style.button}
+              onClick={() => handlePageChange(currentPage - 1)}
+            >
+              Anterior
+            </button>
+          )}
+          {currentPage < totalPages && (
+            <button
+              className={style.button}
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              Siguiente
+            </button>
+          )}
+        </div>
       </div>
       <CardsContainer filteredCountries={visibleCountries} />
     </div>
