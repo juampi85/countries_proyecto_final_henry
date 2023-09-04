@@ -29,7 +29,6 @@ const Form = () => {
     countries: '',
   });
 
-
   const changeHandler = (event) => {
     const newForm = {
       ...form,
@@ -74,6 +73,16 @@ const Form = () => {
       season: '',
       countries: [],
     });
+  };
+
+  const chooseCountries = (event) => {
+    const newForm = {
+      ...form,
+      countries: [...form.countries, event.target.value],
+    };
+    setForm(newForm);
+    const newErrors = validateForm(newForm);
+    setErrors(newErrors);
   };
 
   return (
@@ -228,7 +237,7 @@ const Form = () => {
           </label>
           <select
             value={form.countries}
-            onChange={changeHandler}
+            // onChange={changeHandler}
             name="countries"
             // className={style.select}
             className={
@@ -238,10 +247,12 @@ const Form = () => {
                 ? style.selectErr
                 : null
             }
+            onChange={chooseCountries}
           >
             <option value="">Selecciona un/os País/es</option>
             {countries.map((country) => {
               return (
+                // <option key={country.id} value={country.name}>
                 <option key={country.id} value={country.name}>
                   {country.name}
                 </option>
@@ -253,6 +264,13 @@ const Form = () => {
           ) : (
             <span className={style.ok}>{errors.countries}</span>
           )}
+          <div>
+            {
+            form.countries.map((country) => { 
+              return (<h4 key={country}>{country}</h4>) 
+            
+            })
+          }</div>
         </div>
         <button
           type="submit"

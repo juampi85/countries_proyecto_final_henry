@@ -18,10 +18,11 @@
 }
 
 .pages {
-  width: 10rem;
+  width: 15rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .button {
@@ -36,4 +37,22 @@
     /* border: none; */
     /* border-color: none; */
   }
+}
+
+.disabled {
+  color: grey;
+}
+
+.page_number {
+  font-weight: bold;
+}
+
+input {
+  border-radius: 5px;
+  margin-left: .5rem
+}
+
+select {
+  border-radius: 5px;
+  margin-left: .5rem
 }

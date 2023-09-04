@@ -19,7 +19,7 @@ const Card = ({ id, name, continent, flag_img, population, Activities }) => {
           {Activities.length > 0 ? (
             <div>
               <h4>Actividades:</h4>
-              <ul>
+              <ul className={style.activities_list}>
                 {Activities.map((activity) => (
                   <li key={activity.id}>{activity.name}</li>
                 ))}

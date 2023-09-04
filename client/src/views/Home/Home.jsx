@@ -21,15 +21,15 @@ const Home = () => {
     dispatch(getCountries());
   }, [dispatch]);
 
-   useEffect(() => {
-     setCurrentPage(1); // Setea la página a 1 cada vez que searchTerm cambia
-   }, [searchTerm]);
+  useEffect(() => {
+    setCurrentPage(1); // Setea la página a 1 cada vez que searchTerm cambia
+  }, [searchTerm]);
 
-   const filteredCountries = countries.filter(
-     (country) =>
-       country.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-       (selectedContinent === '' || country.continent === selectedContinent)
-   );
+  const filteredCountries = countries.filter(
+    (country) =>
+      country.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (selectedContinent === '' || country.continent === selectedContinent)
+  );
 
   const sortedCountries = filteredCountries.slice().sort((a, b) => {
     if (sortType === 'name') {
@@ -60,26 +60,17 @@ const Home = () => {
     setCurrentPage(newPage);
   };
 
-  const handleSearch = (event) => {
-    const newSearchTerm = event.target.value;
-    setSearchTerm(newSearchTerm);
-
-    if (selectedContinent !== '') {
-      setCurrentPage(1);
-    }
-  };
 
   const visibleCountries = sortedCountries.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
-
   return (
     <div>
       <div className={style.home_container}>
         <span className={style.searchbar_container}>
-          <label htmlFor={<SearchBar />}> Buscar País</label>
+          <label htmlFor={<SearchBar />}> Buscar País:</label>
           <SearchBar onSearch={setSearchTerm} />
         </span>
         {/* <div className={style.search}>
@@ -123,8 +114,9 @@ const Home = () => {
             <option value="Oceania">Oceanía</option>
           </select>
         </div>
+
         <div className={style.pages}>
-          {currentPage > 1 && (
+          {/* {currentPage > 1 && (
             <button
               className={style.button}
               onClick={() => handlePageChange(currentPage - 1)}
@@ -139,7 +131,24 @@ const Home = () => {
             >
               Siguiente
             </button>
-          )}
+          )} */}
+          <div className={style.pages}>
+            <button
+              className={currentPage === 1 ? style.disabled : style.button}
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Anterior
+            </button>
+            <span className={style.page_number}>{currentPage} / {totalPages}</span>
+            <button
+              className={currentPage === totalPages ? style.disabled : style.button}
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Siguiente
+            </button>
+          </div>
         </div>
       </div>
       <CardsContainer filteredCountries={visibleCountries} />
