@@ -15,13 +15,15 @@ const Card = ({ id, name, continent, flag_img, population, Activities }) => {
             className={style.flags}
           />
           <h3 className={style.continent}> {continent}</h3>
-          <h5>Población: {population}</h5>
+          <h5 className={style.population}>Población: {population}</h5>
           {Activities.length > 0 ? (
             <div>
               <h4>Actividades:</h4>
               <ul className={style.activities_list}>
                 {Activities.map((activity) => (
-                  <li key={activity.id}>{activity.name}</li>
+                  <li key={activity.id} className={style.activities_list_item}>
+                    {activity.name}
+                  </li>
                 ))}
               </ul>
             </div>

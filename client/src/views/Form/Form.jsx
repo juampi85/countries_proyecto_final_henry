@@ -8,11 +8,8 @@ import { getCountries } from '../../redux/actions/actions';
 const Form = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
-
-  useEffect(() => {
-    dispatch(getCountries());
-  }, [dispatch]);
-
+  
+  const [selectedCountries, setSelectedCountries] = useState([]); // estado para poder controlar los países ya elegidos y así evitar
   const [form, setForm] = useState({
     name: '',
     difficulty: '',
@@ -20,7 +17,6 @@ const Form = () => {
     season: '',
     countries: [],
   });
-
   const [errors, setErrors] = useState({
     name: '',
     difficulty: '',
@@ -28,6 +24,10 @@ const Form = () => {
     season: '',
     countries: '',
   });
+  
+  useEffect(() => {
+    dispatch(getCountries());
+  }, [dispatch]);
 
   const changeHandler = (event) => {
     const newForm = {
@@ -41,8 +41,8 @@ const Form = () => {
   };
 
   const areAllErrorsResolved = () => {
-    const allFieldsFilled = Object.values(form).every((value) => value !== '');
-    const noUnresolvedErrors = Object.values(errors).every(
+    const allFieldsFilled = Object.values(form).every((value) => value !== ''); //* acá controlo que todos los campos contengan información
+    const noUnresolvedErrors = Object.values(errors).every( //* y acá reviso que todos los campos tengan el check del "valiate"
       (error) => error === '✓'
     );
 
@@ -64,7 +64,6 @@ const Form = () => {
           alert('Error en el servidor'); // Mensaje genérico en caso de otro tipo de error
         }
       });
-    console.log(form);
 
     setForm({
       name: '',
@@ -76,13 +75,21 @@ const Form = () => {
   };
 
   const chooseCountries = (event) => {
-    const newForm = {
-      ...form,
-      countries: [...form.countries, event.target.value],
-    };
-    setForm(newForm);
-    const newErrors = validateForm(newForm);
-    setErrors(newErrors);
+    const newCountry = event.target.value;
+
+    // Verificar si el país ya está seleccionado
+    if (!selectedCountries.includes(newCountry)) {
+      const newSelectedCountries = [...selectedCountries, newCountry];
+      setSelectedCountries(newSelectedCountries);
+
+      const newForm = {
+        ...form,
+        countries: newSelectedCountries,
+      };
+      setForm(newForm);
+      const newErrors = validateForm(newForm);
+      setErrors(newErrors);
+    }
   };
 
   return (
@@ -96,7 +103,6 @@ const Form = () => {
             value={form.name}
             onChange={changeHandler}
             name="name"
-            // className={style.select}
             className={
               errors.name === '✓'
                 ? style.selectOk
@@ -237,9 +243,7 @@ const Form = () => {
           </label>
           <select
             value={form.countries}
-            // onChange={changeHandler}
             name="countries"
-            // className={style.select}
             className={
               errors.countries === '✓'
                 ? style.selectOk
@@ -251,12 +255,15 @@ const Form = () => {
           >
             <option value="">Selecciona un/os País/es</option>
             {countries.map((country) => {
-              return (
-                // <option key={country.id} value={country.name}>
-                <option key={country.id} value={country.name}>
-                  {country.name}
-                </option>
-              );
+              if (!selectedCountries.includes(country.name)) {
+                return (
+                  <option key={country.id} value={country.name}>
+                    {country.name}
+                  </option>
+                );
+              } else {
+                return null; // Omitir opciones ya seleccionadas
+              }
             })}
           </select>
           {errors.countries !== '✓' ? (

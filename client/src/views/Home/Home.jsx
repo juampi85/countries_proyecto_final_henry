@@ -60,7 +60,6 @@ const Home = () => {
     setCurrentPage(newPage);
   };
 
-
   const visibleCountries = sortedCountries.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
@@ -73,16 +72,6 @@ const Home = () => {
           <label htmlFor={<SearchBar />}> Buscar País:</label>
           <SearchBar onSearch={setSearchTerm} />
         </span>
-        {/* <div className={style.search}>
-          <label htmlFor="search">Buscar País</label>
-          <input
-            type="text"
-            name="search"
-            value={searchTerm}
-            onChange={handleSearch}
-            placeholder="Buscar país"
-          />
-        </div> */}
         <div className={style.search}>
           <label htmlFor="order">Ordenar por: </label>
           <select value={sortType} onChange={handleSortChange} name="order">
@@ -116,22 +105,6 @@ const Home = () => {
         </div>
 
         <div className={style.pages}>
-          {/* {currentPage > 1 && (
-            <button
-              className={style.button}
-              onClick={() => handlePageChange(currentPage - 1)}
-            >
-              Anterior
-            </button>
-          )}
-          {currentPage < totalPages && (
-            <button
-              className={style.button}
-              onClick={() => handlePageChange(currentPage + 1)}
-            >
-              Siguiente
-            </button>
-          )} */}
           <div className={style.pages}>
             <button
               className={currentPage === 1 ? style.disabled : style.button}
@@ -140,9 +113,13 @@ const Home = () => {
             >
               Anterior
             </button>
-            <span className={style.page_number}>{currentPage} / {totalPages}</span>
+            <span className={style.page_number}>
+              {currentPage} / {totalPages}
+            </span>
             <button
-              className={currentPage === totalPages ? style.disabled : style.button}
+              className={
+                currentPage === totalPages ? style.disabled : style.button
+              }
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
             >
