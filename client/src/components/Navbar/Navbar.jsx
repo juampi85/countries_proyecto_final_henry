@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
 import style from './Navbar.module.css';
-// import SearchBar from '../Searchbar/Searchbar';
+import mundito from '../../../public/mundito.png';
 
 const Navbar = () => {
-
   return (
     <div className={style.mainContainer}>
-      <Link to="/home">HOME</Link>
-      <Link to="/create">FORM</Link>
-      <Link to="/activities">ACTIVITIES</Link>
-      {/* <SearchBar /> */}
+      <Link to="/home">
+        <img src={mundito} className={style.mundito} alt="mundito" />
+      </Link>
+      <Link to="/create" className={style.activities}>
+        Crear nueva actividad
+      </Link>
+      <Link to="/activities" className={style.activities}>
+        Ver todas las actividades
+      </Link>
     </div>
   );
 };

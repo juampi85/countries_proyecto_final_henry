@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { GET_COUNTRIES, GET_COUNTRY, GET_ACTIVITIES } from './actionTypes';
+import {
+  GET_COUNTRIES,
+  GET_COUNTRY,
+  GET_ACTIVITIES,
+  GET_COUNTRY_BY_NAME,
+  FILTER_COUNTRIES_BY_ACTIVITY,
+} from './actionTypes';
 
 export const getCountries = () => {
   return async (dispatch) => {
@@ -46,6 +52,22 @@ export const getActivities = (filterByName = '') => {
   };
 };
 
+export function getCountryByName(name) {
+  return async function (dispatch) {
+    try {
+      let url = 'http://localhost:3001/countries';
+      const response = await axios.get(`${url}?name=${name}`);
+      const country = response.data;
+      return dispatch({
+        type: GET_COUNTRY_BY_NAME,
+        payload: country,
+      });
+    } catch (error) {
+      alert({ error: 'error.message' });
+    }
+  };
+}
+
 // export const filterCountryByName = (name) => ({
 //   type: FILTER_COUNTRY_BY_NAME,
 //   payload: name,
@@ -56,10 +78,10 @@ export const getActivities = (filterByName = '') => {
 //   payload: continent,
 // });
 
-// export const filterCountryByActivity = (activity) => ({
-//   type: FILTER_COUNTRY_BY_ACTIVITY,
-//   payload: activity,
-// });
+export const filterCountriesByActivity = (activity) => ({
+  type: FILTER_COUNTRIES_BY_ACTIVITY,
+  payload: activity,
+});
 
 // export const orderCountryByName = (name) => ({
 //   type: ORDER_COUNTRY_BY_NAME,

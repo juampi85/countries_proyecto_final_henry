@@ -1,4 +1,6 @@
 import styles from './SearchBar.module.css';
+// import { useDispatch } from 'react-redux';
+// import { getCountryByName } from '../../redux/actions/actions';
 
 export default function SearchBar({ onSearch }) {
   const handleInputChange = (event) => {
@@ -17,3 +19,25 @@ export default function SearchBar({ onSearch }) {
     </div>
   );
 }
+
+//************************/
+//* Solución con ACTIONS */
+//************************/
+// export default function SearchBar() {
+//   const dispatch = useDispatch();
+
+//   function handleChange(e) {
+//     dispatch(getCountryByName(e.target.value));
+//   }
+
+//   return (
+//     <div className={styles.divSearch}>
+//       <input
+//         type="text"
+//         className={styles.inputSearch}
+//         placeholder="Ingrese el país a buscar..."
+//         onChange={handleChange}
+//       />
+//     </div>
+//   );
+// }

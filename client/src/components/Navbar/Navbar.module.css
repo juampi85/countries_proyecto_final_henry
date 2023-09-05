@@ -1,7 +1,18 @@
 .mainContainer {
 display: flex;
 justify-content: space-around;
-background-color: rgb(230, 238, 126);
+height: 5rem;
+align-items: center;
 border-radius: 2rem;
-border: .25rem solid blue;
+}
+
+.mundito{
+  height: 3.5rem;
+  margin: auto 0;
+}
+
+.activities{
+  font-size: xx-large;
+  font-style: italic;
+  font-weight: bolder;
 }
