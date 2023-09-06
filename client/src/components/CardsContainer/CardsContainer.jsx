@@ -119,11 +119,12 @@ const CardsContainer = () => {
               >
                 <option value="">Todos los continentes</option>
                 <option value="Africa">África</option>
-                <option value="South America">Sudamérica</option>
-                <option value="North America">Norte América</option>
+                <option value="Antarctica">Antártida</option>
                 <option value="Asia">Asia</option>
                 <option value="Europe">Europa</option>
+                <option value="North America">Norte América</option>
                 <option value="Oceania">Oceanía</option>
+                <option value="South America">Sudamérica</option>
               </select>
             </span>
             <span>
@@ -131,18 +132,19 @@ const CardsContainer = () => {
                 Filtrar por actividad:{' '}
               </label>
               <select
-                value={selectedContinent}
-                onChange={handleContinentChange}
-                name="continentFilter"
+                // value={selectedContinent}
+                // onChange={handleContinentChange}
+                // name="continentFilter"
                 className={style.sort_type}
               >
                 <option value="">Todas las actividades</option>
-                <option value="Africa">África</option>
-                <option value="South America">Sudamérica</option>
-                <option value="North America">Norte América</option>
+                {/* <option value="Africa">África</option>
+                <option value="Antarctica">Antártida</option>
                 <option value="Asia">Asia</option>
                 <option value="Europe">Europa</option>
+                <option value="North America">Norte América</option>
                 <option value="Oceania">Oceanía</option>
+                <option value="South America">Sudamérica</option> */}
               </select>
             </span>
           </div>
