@@ -4,7 +4,7 @@ import {
   GET_COUNTRY,
   GET_ACTIVITIES,
   GET_COUNTRY_BY_NAME,
-  FILTER_COUNTRIES_BY_ACTIVITY,
+  FILTER_COUNTRIES_BY_ACTIVITIES
 } from './actionTypes';
 
 export const getCountries = () => {
@@ -29,15 +29,10 @@ export const getCountry = (id) => {
   };
 };
 
-export const getActivities = (filterByName = '') => {
+export const getActivities = () => {
   return async (dispatch) => {
     try {
       let url = 'http://localhost:3001/activities';
-
-      // Agregar el filtro si se proporciona un nombre
-      if (filterByName) {
-        url += `?name=${filterByName}`;
-      }
 
       const response = await axios.get(url);
       const activities = response.data;
@@ -68,6 +63,12 @@ export function getCountryByName(name) {
   };
 }
 
+export function filterCountriesByActivities(name) {
+  return {
+    type: FILTER_COUNTRIES_BY_ACTIVITIES,
+    payload: name,
+  }
+}
 // export const filterCountryByName = (name) => ({
 //   type: FILTER_COUNTRY_BY_NAME,
 //   payload: name,
@@ -77,11 +78,6 @@ export function getCountryByName(name) {
 //   type: FILTER_COUNTRY_BY_CONTINENT,
 //   payload: continent,
 // });
-
-export const filterCountriesByActivity = (activity) => ({
-  type: FILTER_COUNTRIES_BY_ACTIVITY,
-  payload: activity,
-});
 
 // export const orderCountryByName = (name) => ({
 //   type: ORDER_COUNTRY_BY_NAME,

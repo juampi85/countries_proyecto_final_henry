@@ -3,12 +3,15 @@ import style from './Form.module.css';
 import axios from 'axios';
 import { validateForm } from './FormValidations';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountries } from '../../redux/actions/actions';
+import {
+  getCountries,
+  getActivities,
+} from '../../redux/actions/actions';
 
 const Form = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
-  
+
   const [selectedCountries, setSelectedCountries] = useState([]); // estado para poder controlar los países ya elegidos y así evitar
   const [form, setForm] = useState({
     name: '',
@@ -24,7 +27,7 @@ const Form = () => {
     season: '',
     countries: '',
   });
-  
+
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
@@ -42,7 +45,8 @@ const Form = () => {
 
   const areAllErrorsResolved = () => {
     const allFieldsFilled = Object.values(form).every((value) => value !== ''); //* acá controlo que todos los campos contengan información
-    const noUnresolvedErrors = Object.values(errors).every( //* y acá reviso que todos los campos tengan el check del "valiate"
+    const noUnresolvedErrors = Object.values(errors).every(
+      //* y acá reviso que todos los campos tengan el check del "valiate"
       (error) => error === '✓'
     );
 
@@ -64,6 +68,8 @@ const Form = () => {
           alert('Error en el servidor'); // Mensaje genérico en caso de otro tipo de error
         }
       });
+
+    dispatch(getActivities());
 
     setForm({
       name: '',
@@ -272,12 +278,10 @@ const Form = () => {
             <span className={style.ok}>{errors.countries}</span>
           )}
           <div>
-            {
-            form.countries.map((country) => { 
-              return (<h4 key={country}>{country}</h4>) 
-            
-            })
-          }</div>
+            {form.countries.map((country) => {
+              return <h4 key={country}>{country}</h4>;
+            })}
+          </div>
         </div>
         <button
           type="submit"

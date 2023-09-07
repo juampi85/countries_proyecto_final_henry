@@ -3,18 +3,34 @@ import style from './Card.module.css';
 
 // const Card = ({ id, name, continent, flag_img, population, activities }) => {
 const Card = ({ id, name, continent, flag_img, population, Activities }) => {
+  const spanishContinent =
+    continent === 'Europe'
+      ? 'Europa'
+      : continent === 'Asia'
+      ? 'Asia'
+      : continent === 'North America'
+      ? 'Norte América'
+      : continent === 'Africa'
+      ? 'África'
+      : continent === 'Oceania'
+      ? 'Oceanía'
+      : continent === 'Antarctica'
+      ? 'Antártida'
+      : continent === 'South America'
+      ? 'Sudamérica'
+      : '';
   return (
     <>
       <Link to={`/countries/detail/${id}`}>
         <div className={style.container}>
           {/* <p>Este componente debe mostrar CADA PAÍS mapeado y, además, mostrar un LINK para poder acceder al DETALLE de dicho PAÍS</p> */}
-          <h2>{name}</h2>
           <img
             src={flag_img}
             alt={`flag of the ${name} country`}
             className={style.flags}
           />
-          <h3 className={style.continent}> {continent}</h3>
+          <h2 className={style.name}>{name}</h2>
+          <h3 className={style.continent}> {spanishContinent}</h3>
           <h5 className={style.population}>Población: {population}</h5>
           {Activities.length > 0 ? (
             <div>

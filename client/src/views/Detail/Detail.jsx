@@ -48,6 +48,23 @@ function Detail() {
 
   const { name, flag_img, continent, capital, subregion, area, population, Activities} =
     countryDetail;
+
+     const spanishContinent =
+       continent === 'Europe'
+         ? 'Europa'
+         : continent === 'Asia'
+         ? 'Asia'
+         : continent === 'North America'
+         ? 'Norte América'
+         : continent === 'Africa'
+         ? 'África'
+         : continent === 'Oceania'
+         ? 'Oceanía'
+         : continent === 'Antarctica'
+         ? 'Antártida'
+         : continent === 'South America'
+         ? 'Sudamérica'
+         : '';
   return (
     <>
       <div className={style.detailContainer}>
@@ -57,10 +74,10 @@ function Detail() {
         <span>
           <p>
             <b>{name}</b> es un país que queda en el continente de{' '}
-            <b>{continent}</b>. Su capital es <b>{capital}</b>. Su subregión es{' '}
-            <b>{subregion}</b>. Tiene un área de <b>{area}</b> metros cuadrados
-            y una población de <b>{population}</b> habitantes. Su ID es:{' '}
-            <b>{id}</b>.
+            <b>{spanishContinent}</b>. Su capital es <b>{capital}</b>. Su
+            subregión es <b>{subregion}</b>. Tiene un área de <b>{area}</b>{' '}
+            metros cuadrados y una población de <b>{population}</b> habitantes.
+            Su ID es: <b>{id}</b>.
           </p>
         </span>
       </div>
@@ -71,19 +88,18 @@ function Detail() {
           {/* {countryDetail[0].Activities.map((activity) => (
             <li key={activity.id}>{activity.name}</li>
           ))} */}
-
         </ul>
-        {
-        Activities?.length > 0 ?
+        {Activities?.length > 0 ? (
           Activities?.map((activity) => {
             return (
               <div key={activity.id}>
                 <h4>{activity.name}</h4>
               </div>
             );
-          }) :
-            <h4>Aún no existen actividades asociadas...</h4>
-          }
+          })
+        ) : (
+          <h4>Aún no existen actividades asociadas...</h4>
+        )}
       </div>
     </>
   );

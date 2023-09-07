@@ -12,6 +12,14 @@
 .flags {
   height: 10rem;
   width: 100%;
+  border-top-right-radius: .4rem;
+  border-top-left-radius: .4rem;
+}
+
+.name{
+  margin: 0;
+  color: blue;
+  font-style: normal;
 }
 
 .continent {
