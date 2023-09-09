@@ -1,5 +1,27 @@
 .landing {
-  background-image: url('../../../public/cool-background.png');
+  /* background-image: url('../../../public/cool-background.png'); */
+  background-image: url('../../../public/countries.png');
   height: 100vh;
-  color: white;
+  background-color: rgba(238, 245, 133, 0.603);
+  /* color: rgb(61, 247, 5); */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: grid;
+  place-content: center;
+}
+
+.spanContainer {
+  backdrop-filter: blur(10px);
+  width: 40vw;
+  height: 15rem;
+  border-radius: 2rem;
+}
+
+h1{
+  padding: 2rem 8rem;
+  
 }

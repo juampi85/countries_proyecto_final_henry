@@ -45,33 +45,41 @@ function Detail() {
   //   // No es necesario retornar setCountryDetail en este punto.
   // }, [id]);
 
+  const {
+    name,
+    flag_img,
+    continent,
+    capital,
+    subregion,
+    area,
+    population,
+    Activities,
+  } = countryDetail;
 
-  const { name, flag_img, continent, capital, subregion, area, population, Activities} =
-    countryDetail;
+  const spanishContinent =
+    continent === 'Europe'
+      ? 'Europa'
+      : continent === 'Asia'
+      ? 'Asia'
+      : continent === 'North America'
+      ? 'Norte América'
+      : continent === 'Africa'
+      ? 'África'
+      : continent === 'Oceania'
+      ? 'Oceanía'
+      : continent === 'Antarctica'
+      ? 'Antártida'
+      : continent === 'South America'
+      ? 'Sudamérica'
+      : '';
 
-     const spanishContinent =
-       continent === 'Europe'
-         ? 'Europa'
-         : continent === 'Asia'
-         ? 'Asia'
-         : continent === 'North America'
-         ? 'Norte América'
-         : continent === 'Africa'
-         ? 'África'
-         : continent === 'Oceania'
-         ? 'Oceanía'
-         : continent === 'Antarctica'
-         ? 'Antártida'
-         : continent === 'South America'
-         ? 'Sudamérica'
-         : '';
   return (
     <>
-      <div className={style.detailContainer}>
+      <div className={style.detail_container}>
         <span>
           <img src={flag_img} alt={`flag of ${name}`} className={style.flag} />
         </span>
-        <span>
+        <span className={style.detail_text}>
           <p>
             <b>{name}</b> es un país que queda en el continente de{' '}
             <b>{spanishContinent}</b>. Su capital es <b>{capital}</b>. Su
@@ -83,23 +91,39 @@ function Detail() {
       </div>
       <div>
         <h2>Actividades asociadas:</h2>
-        {console.log(Activities)}
-        <ul className={style.activities_list}>
-          {/* {countryDetail[0].Activities.map((activity) => (
-            <li key={activity.id}>{activity.name}</li>
-          ))} */}
-        </ul>
-        {Activities?.length > 0 ? (
-          Activities?.map((activity) => {
-            return (
-              <div key={activity.id}>
-                <h4>{activity.name}</h4>
-              </div>
-            );
-          })
-        ) : (
-          <h4>Aún no existen actividades asociadas...</h4>
-        )}
+        <div className={style.activities_container}>
+          {Activities?.length > 0 ? (
+            Activities?.map((activity) => {
+              return (
+                <div key={activity.id} className={style.activity_card}>
+                  <h4>{activity.name}</h4>
+                  <span className={style.activity_card_text}>
+                    <p className={style.cards_text}>
+                      Dificultad: <strong>{activity.difficulty}/5</strong>
+                    </p>
+                    <p className={style.cards_text}>
+                      Duración: <strong>{activity.duration} hs</strong>
+                    </p>
+                    <p className={style.cards_text}>
+                      Temporada:{' '}
+                      <strong>
+                        {activity.season === 'Summer'
+                          ? 'Verano'
+                          : activity.season === 'Winter'
+                          ? 'Invierno'
+                          : activity.season === 'Spring'
+                          ? 'Primavera'
+                          : 'Otoño'}
+                      </strong>
+                    </p>
+                  </span>
+                </div>
+              );
+            })
+          ) : (
+            <h4>Aún no existen actividades asociadas...</h4>
+          )}
+        </div>
       </div>
     </>
   );

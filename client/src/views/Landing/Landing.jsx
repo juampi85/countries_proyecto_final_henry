@@ -4,8 +4,10 @@ import style from './Landing.module.css';
 const Landing = () => {
   return (
     <div className={style.landing}>
-      <Link to={'/home'}> Home </Link>
-      <h1>Esta es la vista de la LANDING PAGE</h1>
+      <div className={style.spanContainer}>
+        <h1 className={style.landing_title}>Bienvenidos a mi proyecto individual de countries! :)</h1>
+        <Link to={'/home'}> Home </Link>
+      </div>
     </div>
   );
 };

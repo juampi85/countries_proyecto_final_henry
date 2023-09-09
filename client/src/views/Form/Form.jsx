@@ -3,10 +3,7 @@ import style from './Form.module.css';
 import axios from 'axios';
 import { validateForm } from './FormValidations';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getCountries,
-  getActivities,
-} from '../../redux/actions/actions';
+import { getCountries, getActivities } from '../../redux/actions/actions';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -49,8 +46,9 @@ const Form = () => {
       //* y acá reviso que todos los campos tengan el check del "valiate"
       (error) => error === '✓'
     );
+    const atLeastOneCountryChoosed = selectedCountries.length > 0; //* acá controlo elegir, al menos, un país
 
-    return allFieldsFilled && noUnresolvedErrors;
+    return allFieldsFilled && noUnresolvedErrors && atLeastOneCountryChoosed;
   };
 
   const submitHandler = (event) => {
@@ -81,13 +79,14 @@ const Form = () => {
   };
 
   const chooseCountries = (event) => {
-    const newCountry = event.target.value;
+    const pickedCountry = event.target.value;
 
     // Verificar si el país ya está seleccionado
-    if (!selectedCountries.includes(newCountry)) {
-      const newSelectedCountries = [...selectedCountries, newCountry];
+    if (!selectedCountries.includes(pickedCountry)) {
+      const newSelectedCountries = [...selectedCountries, pickedCountry];
       setSelectedCountries(newSelectedCountries);
 
+      console.log(newSelectedCountries);
       const newForm = {
         ...form,
         countries: newSelectedCountries,
@@ -96,6 +95,20 @@ const Form = () => {
       const newErrors = validateForm(newForm);
       setErrors(newErrors);
     }
+  };
+
+  const removeCountry = (countryToRemove) => {
+    const updatedSelectedCountries = selectedCountries.filter(
+      (country) => country !== countryToRemove
+    );
+    setSelectedCountries(updatedSelectedCountries);
+
+    const newForm = {
+      ...form,
+      countries: updatedSelectedCountries,
+    };
+    setForm(newForm);
+    console.log(updatedSelectedCountries);
   };
 
   return (
@@ -121,7 +134,7 @@ const Form = () => {
             <option value="Correr sobre cerros empinados">
               Correr sobre unos cerros empinados
             </option>
-            <option value="Navegar en kayak">
+            <option value="Navegar en kayak sin remos">
               Pistear en kayak como un campeón
             </option>
             <option value="Manejar un karting sin frenos">
@@ -130,14 +143,18 @@ const Form = () => {
             <option value="Jugar al padel sobre hielo">
               Jugar al deporte de los rebotes infinitos
             </option>
-            <option value="Caminar por senderos espinosos">
-              Caminar de noche por senderos cuasi salvajes
+            <option value="Caminar sobre ortigas venenosas">
+              Caminar de noche por ortigas venenosas
             </option>
-            <option value="Nadar con reptiles">
+            <option value="Nadar con reptiles amigablemente">
               Aprovechar para nadar en una laguna espesa
             </option>
-            <option value="Descenso en rapel">
-              Meter una bajada montañosa a puro rapel
+            <option value="Descenso en rapel con los ojos vendados">
+              Meter una bajada montañosa a puro rapel &quot;no-look
+              style&quot;
+            </option>
+            <option value="Jugar al billar sobre llamas">
+              Jugar al billar sobre llamas
             </option>
           </select>
           {errors.name !== '✓' ? (
@@ -253,7 +270,7 @@ const Form = () => {
             className={
               errors.countries === '✓'
                 ? style.selectOk
-                : errors.difficulty !== ''
+                : errors.countries !== '' || selectedCountries.length === 0
                 ? style.selectErr
                 : null
             }
@@ -274,12 +291,26 @@ const Form = () => {
           </select>
           {errors.countries !== '✓' ? (
             <span className={style.error}>{errors.countries}</span>
+          ) : selectedCountries.length === 0 ? (
+            <span className={style.error}>
+              Debe ingresar, al menos, un país
+            </span>
           ) : (
             <span className={style.ok}>{errors.countries}</span>
           )}
-          <div>
+          <div className={style.countries_container}>
             {form.countries.map((country) => {
-              return <h4 key={country}>{country}</h4>;
+              return (
+                <span key={country} className={style.countries}>
+                  <button
+                    onClick={() => removeCountry(country)}
+                    className={style.delete_country}
+                  >
+                    x
+                  </button>
+                  {country}
+                </span>
+              );
             })}
           </div>
         </div>

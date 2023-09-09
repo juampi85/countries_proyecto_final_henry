@@ -29,16 +29,19 @@
   margin: 0 0.25rem;
 }
 
-.selectOk {
+select {
+  margin-right: 1rem;
+}
+
+/* .selectOk {
   margin-right: 1rem;
   border: 4px solid rgb(7, 241, 7);
 }
 
 .selectErr {
   margin-right: 1rem;
-    border: 2.5px double red;
-
-}
+  border: 2.5px double red;
+} */
 
 .error {
   color: red;
@@ -66,9 +69,33 @@
   background-image: url('../../../public/button_bg.png');
   &:hover {
     background-image: url('../../../public/button_hover.png');
-    box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.75);
--webkit-box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.75);
-color: rgb(255, 0, 179);
+    box-shadow: 5px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 5px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    color: rgb(255, 0, 179);
   }
+}
+
+.countries_container {
+  margin-top: 0.5rem;
+  width: 25rem;
+  /* border: red solid 2px; */
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  /* justify-content: flex-start; */
+}
+
+.countries {
+  margin-right: 0.75rem;
+}
+
+.delete_country {
+  margin-right: 0.125rem;
+  margin-bottom: 0.25rem;
+  padding: 0 0.5rem;
+  background-color: rgb(174, 212, 96);
+  border-radius: 0.75rem;
+  font-weight: bold;
+  color: red;
 }

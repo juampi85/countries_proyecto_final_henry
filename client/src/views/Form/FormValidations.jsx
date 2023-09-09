@@ -22,8 +22,8 @@ export const validateForm = (form) => {
     newErrors.duration =
       'La duración de la actividad debe ser un número entero entre 1 y 5';
   }
-
-  if (/^[^0-9!@#$%^&*()_+={}[\]:;"'<>.?\\/~`|]+$/.test(form.countries)) {
+  
+  if (form.countries !== '') {
     newErrors.countries = '✓';
   } else {
     newErrors.countries =

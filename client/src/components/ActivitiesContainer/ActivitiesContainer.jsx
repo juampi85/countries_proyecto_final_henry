@@ -23,6 +23,7 @@ const ActivitiesContainer = () => {
       <select
         value={selectedActivity}
         onChange={(e) => setSelectedActivity(e.target.value)}
+        className={style.option}
       >
         <option value="">Todas las actividades</option>
         {uniqueActivityNames.map((name) => (
@@ -34,7 +35,7 @@ const ActivitiesContainer = () => {
 
       <div className={style.container}>
         {activities
-          .filter((activity) =>{
+          .filter((activity) => {
             return selectedActivity ? activity.name === selectedActivity : true;
           })
           .map((activity) => (

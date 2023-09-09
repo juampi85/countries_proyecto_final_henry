@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import style from './Card.module.css';
 
-// const Card = ({ id, name, continent, flag_img, population, activities }) => {
 const Card = ({ id, name, continent, flag_img, population, Activities }) => {
   const spanishContinent =
     continent === 'Europe'

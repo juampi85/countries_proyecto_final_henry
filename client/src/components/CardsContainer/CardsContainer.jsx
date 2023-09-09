@@ -10,7 +10,6 @@ const CardsContainer = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
   const activities = useSelector((state) => state.activities);
-  // const filterActivities = useSelector((state) => state.filteredActivities);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('asc'); // Nuevo estado para el orden
@@ -19,23 +18,27 @@ const CardsContainer = () => {
   const [selectedActivity, setSelectedActivity] = useState(''); // Nuevo estado para el filtro de actividades
   const [currentPage, setCurrentPage] = useState(1); // Nuevo estado para la página actual
   const [filteredCountries, setFilteredCountries] = useState([]); // Nuevo estado para la lista de países filtrados
-  // const [filteredActivities, setFilteredActivities] = useState([]); // Nuevo estado para la lista de actividades filtradas
 
   const itemsPerPage = 10;
 
   useEffect(() => {
     //* acá se despacha la ACTION getCountries
     dispatch(getCountries());
-    dispatch(getActivities());
-  }, []);
+    dispatch(getActivities(selectedActivity));
+  }, [dispatch, selectedActivity]);
+
+  const uniqueActivityNames = Array.from(
+    new Set(activities.map((activity) => activity.name))
+  );
 
   useEffect(() => {
     setCurrentPage(1); //* acá seteo la página a 1 cada vez que searchTerm cambia
   }, [searchTerm]);
 
   useEffect(() => {
-      setFilteredCountries (countries.filter(
-        //* acá establezco los países filtrados, sin importar si elijo o no algún continente
+    setFilteredCountries(
+      countries.filter(
+        //* acá establezco los países filtrados, sin importar si elijo o no algún continente o actividdad
         (country) =>
           country.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
           (selectedContinent === '' ||
@@ -44,11 +47,8 @@ const CardsContainer = () => {
             country.Activities.some(
               (activity) => activity.name === selectedActivity
             ))
-      ))
-
-      // if (selectedActivity !== []) {
-      //   setSelectedActivity([]);
-      // }
+      )
+    );
   }, [countries, searchTerm, selectedContinent, selectedActivity]);
 
   let sortedCountries = [...filteredCountries].sort((a, b) => {
@@ -84,20 +84,10 @@ const CardsContainer = () => {
     setCurrentPage(newPage);
   };
 
-  const handleActivityFilter = (event) => {
-    // sortedCountries =
-    //   // const selectedActivity = event.target.value;
-    //   [...filteredCountries].filter((country) => {
-    //   return country.Activities.some((activity) =>
-    //     activity.name.includes(event.target.value)
-    //   );
-    // })
-    // console.log('holisss', filteredActivities)
-    // console.log('event.target', event.target.value)
-    // setFilteredActivities(sortedCountries);
-    setSelectedActivity(event.target.value);
-    setCurrentPage(1);
-  };
+  // const handleActivityFilter = (event) => {
+  //   setSelectedActivity(event.target.value);
+  //   setCurrentPage(1);
+  // };
 
   const startIndex = (currentPage - 1) * itemsPerPage; //0
   const endIndex = startIndex + itemsPerPage; //10
@@ -138,6 +128,37 @@ const CardsContainer = () => {
             </span>
           </div>
 
+          <div className={style.search_pages}>
+            <span>
+              <SearchBar onSearch={setSearchTerm} />
+            </span>
+            <div className={style.pages}>
+              <button
+                className={currentPage === 1 ? style.disabled : style.button}
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                Anterior
+              </button>
+              <span className={style.page_number}>
+                {currentPage} / {totalPages}
+              </span>
+              <button
+                className={
+                  currentPage === totalPages || currentPage > totalPages
+                    ? style.disabled
+                    : style.button
+                }
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={
+                  currentPage === totalPages || currentPage > totalPages
+                }
+              >
+                Siguiente
+              </button>
+            </div>
+          </div>
+
           <div className={style.filters}>
             <span>
               <label htmlFor="continentFilter" className={style.order_label}>
@@ -165,47 +186,20 @@ const CardsContainer = () => {
               </label>
               <select
                 value={selectedActivity}
-                onChange={handleActivityFilter}
+                onChange={(e) => setSelectedActivity(e.target.value)}
                 name="activityFilter"
                 className={style.sort_type}
               >
                 <option value="">Todas las actividades</option>
-                {activities.map((activity) => {
+                {uniqueActivityNames.map((name) => {
                   return (
-                    <option key={activity.id} value={activity.name}>
-                      {activity.name}
+                    <option key={name} value={name}>
+                      {name}
                     </option>
                   );
                 })}
               </select>
             </span>
-          </div>
-          <span className={style.searchbar_container}>
-            <SearchBar onSearch={setSearchTerm} />
-          </span>
-        </div>
-
-        <div className={style.pages}>
-          <div className={style.pages}>
-            <button
-              className={currentPage === 1 ? style.disabled : style.button}
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
-              Anterior
-            </button>
-            <span className={style.page_number}>
-              {currentPage} / {totalPages}
-            </span>
-            <button
-              className={
-                currentPage === totalPages ? style.disabled : style.button
-              }
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-            >
-              Siguiente
-            </button>
           </div>
         </div>
       </div>
@@ -219,7 +213,7 @@ const CardsContainer = () => {
               flag_img={country.flag_img}
               continent={country.continent}
               population={country.population}
-              Activities={country.Activities} // Cambia esto según cómo se llame la relación en tu modelo
+              Activities={country.Activities}
             />
           );
         })}

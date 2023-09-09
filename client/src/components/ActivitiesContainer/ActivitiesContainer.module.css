@@ -3,4 +3,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 7rem;
+
+}
+
+.option{
+  width: 15%;
+  margin: 1.5rem auto;
 }

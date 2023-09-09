@@ -3,12 +3,23 @@ display: flex;
 justify-content: space-around;
 height: 5rem;
 align-items: center;
-border-radius: 2rem;
+/* border-radius: 2rem; */
+background-color: dimgrey;
+color: white;
+}
+
+.logo{
+display: flex;
+flex-direction: column;
 }
 
 .mundito{
   height: 3.5rem;
   margin: auto 0;
+}
+
+.juampi{
+  font-style: italic;
 }
 
 .activities{

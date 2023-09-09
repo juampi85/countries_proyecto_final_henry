@@ -1,0 +1,36 @@
+.footer_container {
+  background-color: dimgrey;
+  margin-top: 1rem;
+  height: fit-content;
+  background-color: dimgrey;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* border: 5px solid yellow; */
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.social_media_container{
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+  /* border: 2px solid white; */
+  /* padding-top: .5rem; */
+  /* padding-bottom: .5rem; */
+}
+
+
+.social_media{
+  height: 2rem;
+  background-color: transparent;
+}
+
+.footer_title {
+  margin: .5rem 0;
+}

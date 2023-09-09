@@ -5,9 +5,12 @@ import mundito from '../../../public/mundito.png';
 const Navbar = () => {
   return (
     <div className={style.mainContainer}>
-      <Link to="/home">
-        <img src={mundito} className={style.mundito} alt="mundito" />
-      </Link>
+      <div className={style.logo}>
+        <Link to="/home">
+          <img src={mundito} className={style.mundito} alt="mundito" />
+        </Link>
+        <h6 className={style.juampi}>by Juan Pablo Accinelli</h6>
+      </div>
       <Link to="/create" className={style.activities}>
         Crear nueva actividad
       </Link>

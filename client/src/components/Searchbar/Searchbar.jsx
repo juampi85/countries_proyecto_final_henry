@@ -7,10 +7,6 @@ export default function SearchBar({ onSearch }) {
   const [searchValue, setSearchValue] = useState('');
   const inputRef = useRef(null);
 
-  // const refreshSearch = () => { 
-  //   onSearch(''); // Llama a la función de básqueda desde las props
-  // }
-
   const handleInputChange = (event) => {
     const value = event.target.value;
     setSearchValue(value);
@@ -35,7 +31,7 @@ export default function SearchBar({ onSearch }) {
       />
       {searchValue && ( // Muestra el botón "X" solo si hay un valor en el input
         <button className={styles.buttonSearch} onClick={refreshSearch}>
-          X
+          Reset
         </button>
       )}
     </div>
