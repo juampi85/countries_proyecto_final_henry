@@ -11,7 +11,7 @@ const { Country } = require('./src/db');
 const startingServer = async () => {
   console.log('first')
   try {
-    await conn.sync({ force: true });
+    await conn.sync({ alter: true });
     server.listen(PORT, () => {
       console.log(`Server listening on port ${PORT}`);
     });

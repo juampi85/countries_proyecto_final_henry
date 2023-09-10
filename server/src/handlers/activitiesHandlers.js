@@ -49,7 +49,39 @@ const createActivityHandler = async (req, res) => {
   }
 };
 
+const deleteActivityHandler = async (req, res) => { 
+  try {
+    const { id } = req.params;
+    const activity = await Activity.findByPk(id);
+    if (!activity) {
+      return res.status(404).json({ message: 'Actividad no encontrada' });
+    }
+    await activity.destroy(
+      {where: 
+        {id}
+      }
+    );
+    const allActivities = await Activity.findAll(
+      {include: {
+        model: Country,
+        attributes: ['id', 'name', 'continent'],
+        through: {
+          attributes: [],
+        },
+      },
+      }
+    );
+    return res.status(200).json(allActivities);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Error interno del servidor' });
+  }
+}
+
+
+
 module.exports = {
   getActivitiesHandler,
   createActivityHandler,
+  deleteActivityHandler,
 };
