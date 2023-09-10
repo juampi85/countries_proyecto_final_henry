@@ -90,7 +90,7 @@ function Detail() {
         </span>
       </div>
       <div>
-        <h2>Actividades asociadas:</h2>
+        <h2 className={style.asociated_activities}>Actividades asociadas:</h2>
         <div className={style.activities_container}>
           {Activities?.length > 0 ? (
             Activities?.map((activity) => {
@@ -121,7 +121,7 @@ function Detail() {
               );
             })
           ) : (
-            <h4>Aún no existen actividades asociadas...</h4>
+            <h4 className={style.no_activities}>Aún no existen actividades asociadas...</h4>
           )}
         </div>
       </div>

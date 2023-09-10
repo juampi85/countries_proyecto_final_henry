@@ -7,9 +7,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 4px 5px 0px rgba(255, 255, 0, 0.75);
+-webkit-box-shadow: 5px 4px 5px 0px rgba(255, 255, 0, 0.75);
+-moz-box-shadow: 5px 4px 5px 0px rgba(255, 255, 0, 0.75);
   /* background: rgb(172, 169, 227); */
   /* background: linear-gradient(
     90deg,
@@ -17,7 +17,11 @@
     rgba(26, 212, 178, 1) 72%,
     rgba(0, 212, 255, 1) 100%
   ); */
-  background-image: url('../../../public/form_bg.png');
+  /* background-image: url('../../../public/form_bg.png'); */
+  /* backdrop-filter: blur(200px); */
+  background: rgb(175,227,211);
+background: radial-gradient(circle, rgba(175,227,211,1) 0%, rgba(228,255,244,1) 100%);
+  
 }
 
 .input {
@@ -27,6 +31,7 @@
 .label {
   font-weight: bolder;
   margin: 0 0.25rem;
+  color: BLACK;
 }
 
 select {
@@ -51,29 +56,8 @@ select {
 .ok {
   color: green;
   font-weight: bolder;
+  font-size: large;
   /* font-style: italic; */
-}
-
-.button {
-  align-self: center;
-  font-style: italic;
-  padding: 0.5rem;
-  font-weight: bolder;
-  border-radius: 0.5rem;
-  /* background: rgb(34, 193, 195);
-  background: linear-gradient(
-    0deg,
-    rgba(34, 193, 195, 1) 0%,
-    rgba(253, 187, 45, 1) 100%
-  ); */
-  background-image: url('../../../public/button_bg.png');
-  &:hover {
-    background-image: url('../../../public/button_hover.png');
-    box-shadow: 5px 4px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 5px 4px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 5px 4px 5px 0px rgba(0, 0, 0, 0.75);
-    color: rgb(255, 0, 179);
-  }
 }
 
 .countries_container {
@@ -88,6 +72,13 @@ select {
 
 .countries {
   margin-right: 0.75rem;
+  color: black;
+}
+
+.option{
+  border-radius: 0.5rem;
+  padding: .125rem .25rem;
+  background-color: #e0eba6;
 }
 
 .delete_country {
@@ -98,4 +89,38 @@ select {
   border-radius: 0.75rem;
   font-weight: bold;
   color: red;
+}
+
+.buttons_container{
+  width: 30%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  align-self: center;
+  font-style: italic;
+  padding: 0.5rem;
+  font-weight: bolder;
+  border-radius: 0.5rem;
+  background-color: yellow;
+  box-shadow: 5px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 5px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 4px 5px 0px rgba(0, 0, 0, 0.75);
+ 
+  &:hover {
+    /* background-image: url('../../../public/button_hover.png'); */
+    
+    transform: scale(1.1);
+  }
+
+  &:first-child{
+    margin-right: 1rem;
+  }
+
+  &:last-child{
+    color: red;
+    font-weight: bolder;
+  }
 }

@@ -16,14 +16,43 @@ flex-direction: column;
 .mundito{
   height: 3.5rem;
   margin: auto 0;
+  transition: transform 0.5s ease;
+
+  &:hover {
+    animation: spin 2s linear infinite;
+  }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg); /* Completa una rotación completa (360 grados) */
+    }
 }
 
 .juampi{
   font-style: italic;
+  /* background: #CFCFCF;
+background: linear-gradient(to right, #CFCFCF 0%, #00FF00 50%, #CFCFCF 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;*/
+color: whitesmoke;
+} 
+
+.landing_img{
+  height: 2.5rem;
+  margin-top: .5rem;
 }
 
 .activities{
   font-size: xx-large;
   font-style: italic;
   font-weight: bolder;
+  /* background: #CFBFBC;
+background: linear-gradient(to right, #CFBFBC 0%, #00FF00 50%, #AFAACF 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent; */
+color: whitesmoke;
 }

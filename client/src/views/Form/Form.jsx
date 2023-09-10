@@ -78,6 +78,26 @@ const Form = () => {
     });
   };
 
+  const refreshForm = (event) => {
+    event.preventDefault();
+
+    setForm({
+      name: '',
+      difficulty: '',
+      duration: '',
+      season: '',
+      countries: [],
+    });
+
+    setErrors({
+      name: '',
+      difficulty: '',
+      duration: '',
+      season: '',
+      countries: '',
+    });
+  };
+
   const chooseCountries = (event) => {
     const pickedCountry = event.target.value;
 
@@ -123,11 +143,12 @@ const Form = () => {
             onChange={changeHandler}
             name="name"
             className={
-              errors.name === '✓'
-                ? style.selectOk
-                : errors.difficulty !== ''
-                ? style.selectErr
-                : null
+              // errors.name === '✓'
+              //   ? style.selectOk
+              //   : errors.difficulty !== ''
+              //   ? style.selectErr
+              //   : null
+              style.option
             }
           >
             <option value="">Elija la actividad turística</option>
@@ -150,8 +171,7 @@ const Form = () => {
               Aprovechar para nadar en una laguna espesa
             </option>
             <option value="Descenso en rapel con los ojos vendados">
-              Meter una bajada montañosa a puro rapel &quot;no-look
-              style&quot;
+              Meter una bajada montañosa a puro rapel &quot;no-look style&quot;
             </option>
             <option value="Jugar al billar sobre llamas">
               Jugar al billar sobre llamas
@@ -173,11 +193,12 @@ const Form = () => {
             name="difficulty"
             // className={style.select}
             className={
-              errors.difficulty === '✓'
-                ? style.selectOk
-                : errors.difficulty !== ''
-                ? style.selectErr
-                : null
+              // errors.difficulty === '✓'
+              //   ? style.selectOk
+              //   : errors.difficulty !== ''
+              //   ? style.selectErr
+              //   : null
+              style.option
             }
           >
             <option value="">Elija el nivel de dificultad</option>
@@ -209,11 +230,12 @@ const Form = () => {
             name="duration"
             // className={style.select}
             className={
-              errors.duration === '✓'
-                ? style.selectOk
-                : errors.difficulty !== ''
-                ? style.selectErr
-                : null
+              // errors.duration === '✓'
+              //   ? style.selectOk
+              //   : errors.difficulty !== ''
+              //   ? style.selectErr
+              //   : null
+              style.option
             }
           >
             <option value="">Elija las horas de duración</option>
@@ -240,11 +262,12 @@ const Form = () => {
             name="season"
             // className={style.select}
             className={
-              errors.season === '✓'
-                ? style.selectOk
-                : errors.difficulty !== ''
-                ? style.selectErr
-                : null
+              // errors.season === '✓'
+              //   ? style.selectOk
+              //   : errors.difficulty !== ''
+              //   ? style.selectErr
+              //   : null
+              style.option
             }
           >
             <option value="">Selecciona una opción</option>
@@ -268,11 +291,12 @@ const Form = () => {
             value={form.countries}
             name="countries"
             className={
-              errors.countries === '✓'
-                ? style.selectOk
-                : errors.countries !== '' || selectedCountries.length === 0
-                ? style.selectErr
-                : null
+              // errors.countries === '✓'
+              //   ? style.selectOk
+              //   : errors.countries !== '' || selectedCountries.length === 0
+              //   ? style.selectErr
+              //   : null
+              style.option
             }
             onChange={chooseCountries}
           >
@@ -314,13 +338,22 @@ const Form = () => {
             })}
           </div>
         </div>
-        <button
-          type="submit"
-          className={style.button}
-          disabled={!areAllErrorsResolved()}
-        >
-          SUBMIT
-        </button>
+        <div className={style.buttons_container}>
+          <button
+            type="submit"
+            className={style.button}
+            disabled={!areAllErrorsResolved()}
+          >
+            SUBMIT
+          </button>
+          <button
+            type="submit"
+            className={style.button}
+            onClick={refreshForm}
+          >
+            CLEAR
+          </button>
+        </div>
       </form>
     </>
   );

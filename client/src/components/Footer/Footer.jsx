@@ -8,7 +8,7 @@ import whatsapp from '../../../public/whatsapp.svg';
 
 const Footer = () => {
   const facebookURL = 'https://www.facebook.com/juanpablo.accinelli';
-  const linkedinURL = 'https://www.linkedin.com/in/juan-pablo-accinelli/';
+  const linkedinURL = 'https://www.linkedin.com/in/juan-pablo-accinelli/'; 
   const instagramURL = 'https://www.instagram.com/seguros.jpa/';
   const githubURL = 'https://github.com/juampi85';
   const whatsappURL = 'https://wa.me/5493764277716';

@@ -10,4 +10,7 @@
 .option{
   width: 15%;
   margin: 1.5rem auto;
+  border-radius: 0.5rem;
+  padding: .125rem .25rem;
+  background-color: #e0eba6;
 }
