@@ -25,7 +25,7 @@ const getAllCountries = async (name) => {
 
 const getCountryById = async (id) => {
   try {
-    // Obtener el país por su ID con todas las actividades asociadas
+    //* Con esto, lo que consigo, es obtener el país por su ID con todas las actividades asociadas
     const country = await Country.findByPk(id.toUpperCase(), {
       include: [
         {

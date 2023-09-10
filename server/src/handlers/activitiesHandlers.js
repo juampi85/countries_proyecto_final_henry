@@ -15,14 +15,13 @@ const getActivitiesHandler = async (req, res) => {
 const createActivityHandler = async (req, res) => {
   try {
     const { name, difficulty, duration, season, countries } = req.body;
-    // const countryArray = countries.split(',').map((country) => country.trim());
     const countryArray = countries.map((country) => country.trim());
 
     const countryRecords = await Country.findAll({
       where: {
         name: {
           [Op.or]: countryArray.map((country) => ({
-            [Op.iLike]: `%${country}%`, // Búsqueda insensible a mayúsculas y minúsculas
+            [Op.iLike]: `%${country}%`, //* Con esto consigo hacer una búsqueda que es insensible a mayúsculas y minúsculas
           })),
         },
       },
@@ -77,8 +76,6 @@ const deleteActivityHandler = async (req, res) => {
     return res.status(500).json({ message: 'Error interno del servidor' });
   }
 }
-
-
 
 module.exports = {
   getActivitiesHandler,

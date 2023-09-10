@@ -3,7 +3,6 @@ const {
   getCountryById,
 } = require('../controllers/countriesControllers.js');
 
-
 const getCountriesHandler = async (req, res) => {
   const { name } = req.query;
   try {
@@ -20,7 +19,6 @@ const getCountriesHandler = async (req, res) => {
     res.status(500).json({ message: 'Hubo un error en el servidor.' });
   }
 };
-
 
 const getCountryHandler = async (req, res) => {
   try {

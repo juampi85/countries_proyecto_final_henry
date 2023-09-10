@@ -7,7 +7,6 @@ const { conn } = require('./src/db.js');
 const PORT = 3001;
 const { Country } = require('./src/db');
 
-
 const startingServer = async () => {
   console.log('first')
   try {
@@ -18,16 +17,16 @@ const startingServer = async () => {
 
     const getAllCountries = (await axios.get('http://localhost:5000/countries')).data;
     
-    const countriesAtDatabase = await getAllCountries.map(e => { 
+    const countriesAtDatabase = await getAllCountries.map(country => { 
       return {
-        id: e.cca3,
-        name: e.name.common,
-        flag_img: e.flags.png,
-        continent: e.continents[0],
-        capital: e.capital ? e.capital[0] : 'No tiene capital',
-        subregion: e.subregion,
-        area: e.area,
-        population: e.population
+        id: country.cca3,
+        name: country.name.common,
+        flag_img: country.flags.png,
+        continent: country.continents[0],
+        capital: country.capital ? country.capital[0] : 'No tiene capital',
+        subregion: country.subregion,
+        area: country.area,
+        population: country.population
       }
     })
 
