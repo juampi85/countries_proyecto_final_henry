@@ -31,7 +31,7 @@ const Activities = ({ id, name, duration, difficulty, season, Countries }) => {
         >
           X
         </button>
-        <h3>{name}</h3>
+        <h3 className={style.activity_name}>{name}</h3>
         <p className={style.countries_details}>
           Duración: <b>{duration}</b> hrs
         </p>

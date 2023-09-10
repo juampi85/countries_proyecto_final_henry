@@ -26,8 +26,9 @@
   font-size: large;
 }
 
-h3 {
+.activity_name {
   margin: 0;
+  padding: 0 1rem;
   color: blue;
 }
 
