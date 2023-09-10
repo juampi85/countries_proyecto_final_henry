@@ -21,7 +21,7 @@ function Detail() {
     return setCountryDetail({});
   }, [id]);
 
-  //* Usando el TRY/CATCH
+  //* Acá podría haber usado el TRY/CATCH
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
@@ -42,7 +42,6 @@ function Detail() {
   //   fetchData();
   //   console.log(countryDetail);
 
-  //   // No es necesario retornar setCountryDetail en este punto.
   // }, [id]);
 
   const {

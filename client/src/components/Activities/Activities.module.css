@@ -2,7 +2,6 @@
   border: solid 2px black;
   width: 15rem;
   height: auto;
-  /* flex: 1; */
   margin: 10px;
   background-image: linear-gradient(to right top, #a1a9b5, #76b5ca, #33c2bd, #4dc888, #9ac43c);
   border-top-left-radius: 1.5rem;

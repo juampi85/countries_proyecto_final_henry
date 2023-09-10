@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {
   GET_COUNTRIES,
-  // GET_COUNTRY,
   GET_ACTIVITIES,
   DELETE_ACTIVITY,
 } from './actionTypes';
@@ -16,17 +15,6 @@ export const getCountries = () => {
     });
   };
 };
-
-// export const getCountry = (id) => {
-//   return async (dispatch) => {
-//     const response = await axios.get(`http://localhost:3001/countries/${id}`);
-//     const country = response.data;
-//     dispatch({
-//       type: GET_COUNTRY,
-//       payload: country,
-//     });
-//   };
-// };
 
 export const getActivities = () => {
   return async (dispatch) => {

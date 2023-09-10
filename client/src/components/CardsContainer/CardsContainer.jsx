@@ -12,17 +12,16 @@ const CardsContainer = () => {
   const activities = useSelector((state) => state.activities);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortOrder, setSortOrder] = useState('asc'); // Nuevo estado para el orden
-  const [sortType, setSortType] = useState('name'); // Nuevo estado para el tipo de orden
-  const [selectedContinent, setSelectedContinent] = useState(''); // Nuevo estado para el filtro de continentes
-  const [selectedActivity, setSelectedActivity] = useState(''); // Nuevo estado para el filtro de actividades
-  const [currentPage, setCurrentPage] = useState(1); // Nuevo estado para la página actual
-  const [filteredCountries, setFilteredCountries] = useState([]); // Nuevo estado para la lista de países filtrados
+  const [sortOrder, setSortOrder] = useState('asc'); 
+  const [sortType, setSortType] = useState('name'); 
+  const [selectedContinent, setSelectedContinent] = useState(''); 
+  const [selectedActivity, setSelectedActivity] = useState(''); 
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [filteredCountries, setFilteredCountries] = useState([]); 
 
   const itemsPerPage = 10;
 
   useEffect(() => {
-    //* acá se despacha la ACTION getCountries
     dispatch(getCountries());
     dispatch(getActivities(selectedActivity));
   }, [dispatch, selectedActivity]);
@@ -52,7 +51,6 @@ const CardsContainer = () => {
   }, [countries, searchTerm, selectedContinent, selectedActivity]);
 
   let sortedCountries = [...filteredCountries].sort((a, b) => {
-    //* resultado de los countries ordenados
     if (sortType === 'name') {
       return sortOrder === 'asc'
         ? a.name.localeCompare(b.name)
@@ -83,11 +81,6 @@ const CardsContainer = () => {
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
-
-  // const handleActivityFilter = (event) => {
-  //   setSelectedActivity(event.target.value);
-  //   setCurrentPage(1);
-  // };
 
   const startIndex = (currentPage - 1) * itemsPerPage; //0
   const endIndex = startIndex + itemsPerPage; //10

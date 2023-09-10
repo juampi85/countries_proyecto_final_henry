@@ -7,7 +7,6 @@ import {
 const initialState = {
   countries: [],
   activities: [],
-  filteredActivities: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {

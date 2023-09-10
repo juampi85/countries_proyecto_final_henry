@@ -6,10 +6,6 @@
 }
 
 .buttonSearch{
-  /* padding: .5rem;
-  font-weight: bolder;
-  border-radius: .75rem;
-  background-color: coral; */
   margin-left: .35rem;
   color: red;
   align-self: center;
@@ -23,8 +19,6 @@
     -moz-box-shadow: 5px 4px 5px 0px rgba(0, 0, 0, 0.75);
  
   &:hover {
-    /* background-image: url('../../../public/button_hover.png'); */
-    
     transform: scale(1.04);
   }
 }

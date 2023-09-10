@@ -10,7 +10,6 @@ const ActivitiesContainer = () => {
 
   const [selectedActivity, setSelectedActivity] = useState('');
 
-
   useEffect(() => {
     dispatch(getActivities(selectedActivity));
   }, [dispatch, selectedActivity]);
@@ -18,11 +17,6 @@ const ActivitiesContainer = () => {
   const uniqueActivityNames = Array.from(
     new Set(activities.map((activity) => activity.name))
   );
-
-// const handleDeleteActivity = (id) => {
-//   console.log('Eliminar actividad con ID (desde ActivitiesContainer):', id);
-//   dispatch(deleteActivity(id));
-// };
 
   return (
     <>

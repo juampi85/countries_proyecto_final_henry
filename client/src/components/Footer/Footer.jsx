@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import style from './Footer.module.css';
 import facebook from '../../../public/facebook.svg';
 import instagram from '../../../public/instagram.svg';
@@ -14,9 +13,6 @@ const Footer = () => {
   const whatsappURL = 'https://wa.me/5493764277716';
   return (
     <div className={style.footer_container}>
-      {/* <span className={style.footer_title}>
-        Proyecto Individual Integrador de SoyHenry
-      </span> */}
       <div className={style.social_media_container}>
         <a href={facebookURL} target="_blank" rel="noreferrer">
           <img

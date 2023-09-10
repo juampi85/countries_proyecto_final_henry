@@ -2,19 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* background-color: #ddcece; */
 }
 
-.App{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-image: url('../../../public/mundo_cobre.jpg');
-    background-size: cover;
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url('../../../public/mundo_cobre.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 #root {
   text-align: center;
-
 }

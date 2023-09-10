@@ -9,7 +9,7 @@ const Form = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
 
-  const [selectedCountries, setSelectedCountries] = useState([]); // estado para poder controlar los países ya elegidos y así evitar
+  const [selectedCountries, setSelectedCountries] = useState([]);
   const [form, setForm] = useState({
     name: '',
     difficulty: '',
@@ -101,7 +101,6 @@ const Form = () => {
   const chooseCountries = (event) => {
     const pickedCountry = event.target.value;
 
-    // Verificar si el país ya está seleccionado
     if (!selectedCountries.includes(pickedCountry)) {
       const newSelectedCountries = [...selectedCountries, pickedCountry];
       setSelectedCountries(newSelectedCountries);
@@ -142,14 +141,7 @@ const Form = () => {
             value={form.name}
             onChange={changeHandler}
             name="name"
-            className={
-              // errors.name === '✓'
-              //   ? style.selectOk
-              //   : errors.difficulty !== ''
-              //   ? style.selectErr
-              //   : null
-              style.option
-            }
+            className={style.option}
           >
             <option value="">Elija la actividad turística</option>
             <option value="Correr sobre cerros empinados">
@@ -191,15 +183,7 @@ const Form = () => {
             value={form.difficulty}
             onChange={changeHandler}
             name="difficulty"
-            // className={style.select}
-            className={
-              // errors.difficulty === '✓'
-              //   ? style.selectOk
-              //   : errors.difficulty !== ''
-              //   ? style.selectErr
-              //   : null
-              style.option
-            }
+            className={style.option}
           >
             <option value="">Elija el nivel de dificultad</option>
             <option value="1">1</option>
@@ -229,14 +213,7 @@ const Form = () => {
             onChange={changeHandler}
             name="duration"
             // className={style.select}
-            className={
-              // errors.duration === '✓'
-              //   ? style.selectOk
-              //   : errors.difficulty !== ''
-              //   ? style.selectErr
-              //   : null
-              style.option
-            }
+            className={style.option}
           >
             <option value="">Elija las horas de duración</option>
             <option value="1">1</option>
@@ -260,15 +237,7 @@ const Form = () => {
             value={form.season}
             onChange={changeHandler}
             name="season"
-            // className={style.select}
-            className={
-              // errors.season === '✓'
-              //   ? style.selectOk
-              //   : errors.difficulty !== ''
-              //   ? style.selectErr
-              //   : null
-              style.option
-            }
+            className={style.option}
           >
             <option value="">Selecciona una opción</option>
             <option value="Winter">Invierno</option>
@@ -290,14 +259,7 @@ const Form = () => {
           <select
             value={form.countries}
             name="countries"
-            className={
-              // errors.countries === '✓'
-              //   ? style.selectOk
-              //   : errors.countries !== '' || selectedCountries.length === 0
-              //   ? style.selectErr
-              //   : null
-              style.option
-            }
+            className={style.option}
             onChange={chooseCountries}
           >
             <option value="">Selecciona un/os País/es</option>
@@ -309,7 +271,7 @@ const Form = () => {
                   </option>
                 );
               } else {
-                return null; // Omitir opciones ya seleccionadas
+                return null; //* con esto logro ignorar, digamos, las opciones ya seleccionadas
               }
             })}
           </select>
@@ -346,11 +308,7 @@ const Form = () => {
           >
             SUBMIT
           </button>
-          <button
-            type="submit"
-            className={style.button}
-            onClick={refreshForm}
-          >
+          <button type="submit" className={style.button} onClick={refreshForm}>
             CLEAR
           </button>
         </div>

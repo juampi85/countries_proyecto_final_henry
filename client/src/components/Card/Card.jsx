@@ -22,7 +22,6 @@ const Card = ({ id, name, continent, flag_img, population, Activities }) => {
     <>
       <Link to={`/countries/detail/${id}`}>
         <div className={style.container}>
-          {/* <p>Este componente debe mostrar CADA PAÍS mapeado y, además, mostrar un LINK para poder acceder al DETALLE de dicho PAÍS</p> */}
           <img
             src={flag_img}
             alt={`flag of the ${name} country`}

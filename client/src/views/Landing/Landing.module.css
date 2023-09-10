@@ -1,13 +1,7 @@
 .landing {
-  /* background-image: url('../../../public/cool-background.png'); */
-  /* background-image: url('../../../public/countries.png'); */
-  /* background-image: url('../../../public/mundo_cobre.jpg'); */
-  /* background-image: url('../../../public/mundo_colores.jpg'); */
-  /* background-image: url('../../../public/mundo_dibujos.jpg'); */
   background-image: url('../../../public/mundo_sicodelico.jpg');
   height: 100vh;
   background-color: rgba(238, 245, 133, 0.603);
-  /* color: rgb(61, 247, 5); */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,39 +9,33 @@
   background-repeat: no-repeat;
   background-position: center;
   display: grid;
-  /* place-content: initial; */
-  
 }
 
 .spanContainer {
   backdrop-filter: blur(10px);
-  margin-top: .125rem;
+  margin-top: 0.125rem;
   width: 40vw;
   height: 15rem;
   border-radius: 2rem;
-  /* display: flex; */
   border: grey solid 2px;
-  box-shadow: 10px 10px 5px 0px rgba(255,255,255,0.75);
--webkit-box-shadow: 5px 5px 5px 0px rgba(255,255,255,0.75);
--moz-box-shadow: 10px 10px 5px 0px rgba(255,255,255,0.75);
-
+  box-shadow: 10px 10px 5px 0px rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(255, 255, 255, 0.75);
 }
-.landing_title{
- 
- background: #f0f4f4; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #f0f4f4, #aaeece); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #f0f4f4, #aaeece); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.landing_title {
+  background: #f0f4f4;
+  background: -webkit-linear-gradient(to right, #f0f4f4, #aaeece);
+  background: linear-gradient(to right, #f0f4f4, #aaeece);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   font-style: italic;
   line-height: 1.5;
   font-size: xx-large;
-padding: 1rem 1rem;
-
+  padding: 1rem 1rem;
 }
 
-.landing_img{
+.landing_img {
   height: 6rem;
   transition: transform 0.5s ease;
 
@@ -57,10 +45,10 @@ padding: 1rem 1rem;
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg); /* Completa una rotación completa (360 grados) */
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg); /* Con esto logro hacer una vuelta completa del mundito */
+  }
 }
